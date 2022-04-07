@@ -32,16 +32,21 @@ const bookReducer = (state:Book, action:Action) => {
 	const bookId=action.book.id
 	const bookids= newState.addedBooks.map((book:Book)=>book.id)
     
-	if(newbook.number_of_purchases >= newbook.available_copies) return newState
+	if(newbook.number_of_purchases >= newbook.available_copies) {
+		console.log({dapo1:newState})
+		return newState 
+	}
 	const bookIndex=newState.addedBooks.findIndex((book:Book)=> book.id === bookId )
 	if(bookids.includes(newbook.id)) {	
 		console.log(newState.addedBooks,bookIndex,newbook)
 		newState.addedBooks[bookIndex].number_of_purchases += 1
+		console.log({dapo2:newState})
 		return newState
 	}
-	newState.addedBooks[bookIndex].available_copies -= 1
+	const avBooks=newState.addedBooks[bookIndex]?.available_copies
+	if(avBooks) newState.addedBooks[bookIndex].available_copies -= 1
 	newState.addedBooks.push(newbook)
-
+	console.log({dapo3:newState})
     return newState
 
   }
@@ -63,7 +68,9 @@ const bookReducer = (state:Book, action:Action) => {
     const bookId=action.id
 	
 	const bookIndex=newState.addedBooks.findIndex((book:Book)=> book.id === bookId )
-	newState.addedBooks[bookIndex].number_of_purchases += 1
+	const purBooks=newState.addedBooks[bookIndex]?.number_of_purchases
+	if(purBooks) newState.addedBooks[bookIndex].number_of_purchases += 1
+	
 	return newState
 
   }
@@ -73,8 +80,18 @@ const bookReducer = (state:Book, action:Action) => {
 	const newState={ ...state }
     const bookId=action.id
 	
+	
 	const bookIndex=newState.addedBooks.findIndex((book:Book)=> book.id === bookId )
-	newState.addedBooks[bookIndex].number_of_purchases -= 1
+
+	const purBooks=newState.addedBooks[bookIndex]?.number_of_purchases
+     
+	if(purBooks === 1) {
+		const newbooks=newState.addedBooks.filter((book:Book)=> book.id !== bookId )
+		newState.addedBooks=newbooks
+		return newState
+	}
+
+	if(purBooks) newState.addedBooks[bookIndex].number_of_purchases -= 1
 	return newState
 
   }

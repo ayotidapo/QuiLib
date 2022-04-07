@@ -27,6 +27,13 @@ const CartItem: React.FC<Props> = ({ book }) => {
   }
 
 
+  const onRemove = (id: number) => {
+    bookDispatcher({
+      type: 'REMOVE_BOOK',
+      id
+    })
+  }
+
 
   return (
     <article className='cart-item'>
@@ -39,7 +46,7 @@ const CartItem: React.FC<Props> = ({ book }) => {
       <div className='cart-item-desc'>
         <h6 className='h6'>{book.title}</h6>
         <span className='mt-5'>{book.author}</span>
-        <span className='remove'>Remove</span>
+        <span className='remove hand' onClick={() => onRemove(book.id)}>Remove</span>
       </div>
       <div className='controls-price'>
         <span className='mt-5'>$ 29.99</span>

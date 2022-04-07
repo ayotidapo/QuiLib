@@ -20,6 +20,7 @@ const BookItem: React.FC<Props> = (props) => {
 
   console.log(bookState)
   const addToCart = (book: Book) => {
+    console.log(book)
     if (isoutOfStock) return false;
     console.log('called')
     showCart()
