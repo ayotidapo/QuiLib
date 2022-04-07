@@ -1,25 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
+import Header from 'components/Header'
+import BookItem from 'components/BookItem';
+import CartView from 'components/CartView'
+import bookData from 'utils/books.json'
+import './index.css';
 import './App.css';
+import Carousel from 'components/Carousel';
+
 
 function App() {
+  const { data: books } = bookData;
+  const [showCart, setShowCart] = useState<boolean>(false)
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div>
+        <CartView showCart={showCart} onShowCart={() => setShowCart(false)} />
+        <Header onShowCart={() => setShowCart(true)} />
+        <main className='main'>
+          <div className='featured-h6'>
+            <h6 className='h6'>Featured Books</h6>
+          </div>
+          <Carousel />
+          <div className='featured-h6'>
+            <h6 className='h6'>All Books</h6>
+          </div>
+          <section className='book-items-wrapper' >
+            {books.map((book, i) => <BookItem key={i} book={book} showCart={() => setShowCart(true)} />)}
+          </section>
+        </main>
+      </div>
+    </>
   );
 }
 
