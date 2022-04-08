@@ -48,7 +48,7 @@ const Header: React.FC<Props> = (props) => {
 			console.log({ serchByBook, search })
 			bookDispatcher({
 				type: 'UPDATE_SEARCH',
-				searches: [...serchByBook, ...serchByDesc]
+				searches: [...serchByDesc]
 			})
 			return
 		}
