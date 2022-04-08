@@ -94,6 +94,8 @@
   border-radius: 5px;
   display: inline-block;
   position: relative;
+  width: 220px;
+  height: 330px;
 }
 .carousel-wrapper .gallery-cell img {
   width: 220px;

@@ -28,7 +28,7 @@ const Carousel: React.FC = () => {
 				static
 			>
 				{featured.map((book: Book) =>
-					<div className="gallery-cell">
+					<div className="gallery-cell img-loading-animate">
 						<img src={book.image_url} alt={book.title} />
 						<div className="card-details">
 							<span className="available">Available</span>
