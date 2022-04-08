@@ -10,7 +10,8 @@ import Flickity from 'react-flickity-component'
 
 const flickityOptions = {
 	initialIndex: 3,
-	wrapAround: true
+	wrapAround: true,
+	autoPlay: true
 }
 
 const Carousel: React.FC = () => {
