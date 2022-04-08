@@ -52,7 +52,7 @@ const CartView: React.FC<Props> = (props) => {
           <div className='checkout-box'>
             <div className='d-flx-jc-sb mb-10 mt-10'>
               <span className='subt'>Subtotal</span>
-              <span className='subt-price'>{!isNaN(subTotal) && `$ ${subTotal}`}</span>
+              <span className='subt-price'>{!isNaN(subTotal) && `$ ${subTotal?.toFixed(2)}`}</span>
             </div>
             <Button className='cart-box-btn'>
               <span>
