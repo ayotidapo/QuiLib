@@ -54,7 +54,7 @@ const CartItem: React.FC<Props> = ({ book }) => {
       <div className='controls-price'>
         <span className='mt-5'>$ 29.99</span>
         <div className='d-flx controls mt-10'>
-          <span className='hand' onClick={() => controlQty(book.id, "+")}>+</span>
+          <span className={book.available_copies === 0 ? 'disabled' : 'hand'} onClick={() => controlQty(book.id, "+")}>+</span>
           <span>{book.number_of_purchases}</span>
           <span className='hand' onClick={() => controlQty(book.id, "-")}>-</span>
         </div>
