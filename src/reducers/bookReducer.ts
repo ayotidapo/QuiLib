@@ -67,11 +67,12 @@ const bookReducer = (state:Book, action:Action) => {
 
 const incrQtyFun=(state:Book, action:Action)=>{
 
-	const newState={ ...state }
+    const newState={ ...state }
     const bookId=action.id
 	
 	const bookIndex=newState.addedBooks.findIndex((book:Book)=> book.id === bookId )
-	const book= {...(newState.addedBooks[bookIndex])}
+
+	const book = {...(newState.addedBooks[bookIndex])}
 
 	
 	const purBooks=book?.number_of_purchases
@@ -81,7 +82,7 @@ const incrQtyFun=(state:Book, action:Action)=>{
 	// const curPur=newState.addedBooks[bookIndex]?.number_of_purchases
 
 	if(purBooks && availables > 0) { 
-	  increment =purBooks + 1
+	  increment = purBooks + 1
 	  decr= availables - 1
 
 	  book.number_of_purchases = increment;
@@ -90,10 +91,6 @@ const incrQtyFun=(state:Book, action:Action)=>{
 	}
 
 	 
-	// console.log({increment})
-	//  newState.addedBooks[bookIndex].number_of_purchases++
-	//  console.log({in:newState.addedBooks[bookIndex].number_of_purchases,newState:{...newState}})
-	// console.log({a:newState.addedBooks[bookIndex].number_of_purchases})
 	 return newState
 
 }

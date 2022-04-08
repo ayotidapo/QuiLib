@@ -44,6 +44,7 @@ const CartItem: React.FC<Props> = ({ book }) => {
       id
     })
   }
+
   const authors = book.authors.map((author: Author) => author.name)
 
   return (
