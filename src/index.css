@@ -104,7 +104,9 @@ input {
   font-family: "Ubuntu", sans-serif;
   font-size: var(--f-14);
 }
-
+.wt-100 {
+  width: 100%;
+}
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: var(--col-ash);

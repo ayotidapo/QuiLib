@@ -1,4 +1,4 @@
-import { Book } from 'interfaces';
+import { Book, Author } from 'interfaces';
 import { BookContext } from 'context';
 import { useContext } from 'react';
 import './cart.css'
@@ -7,16 +7,7 @@ interface Props {
   book: Book
 }
 
-interface Author {
-  id: number;
-  name: string;
-  history: string;
-  rating: string;
-  book: number;
-  published_at: string;
-  created_at: string;
-  updated_at: string;
-}
+
 
 const CartItem: React.FC<Props> = ({ book }) => {
   const { bookDispatcher } = useContext(BookContext)
