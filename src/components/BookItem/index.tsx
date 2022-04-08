@@ -26,7 +26,8 @@ const BookItem: React.FC<Props> = (props) => {
     showCart()
     bookDispatcher({ type: 'ADD_TO_CART', book })
   }
-
+  const rate = Math.ceil(book.rating)
+  const ratings = Array.from(Array(rate).keys())
   return (
     <article className="book-item">
       <div className="mini-book-item">
@@ -53,7 +54,7 @@ const BookItem: React.FC<Props> = (props) => {
             </span>
             <div className="star-div">
               <span className="small m-bt-1 d-blk">Ratings: {book.rating}</span>
-              {[1, 2, 3, 4, 5].map((num) => (
+              {ratings.map((num) => (
                 <Icon key={num} id="star" height={17} width={16} />
               ))}
             </div>
