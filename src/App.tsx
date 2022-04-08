@@ -13,38 +13,46 @@ import './App.css';
 function App() {
 
   const [showCart, setShowCart] = useState<boolean>(false)
-
-
-
-
+  const [search, setSearch] = useState<string>("")
 
   const { bookState: { books: allBooks, searchedBooks } } = useContext(BookContext)
-
-  const isSearchedAvailable = searchedBooks.length > 0
+  const searchedLen = searchedBooks.length
+  const isSearchedAvailable = searchedLen > 0
 
 
   const books = isSearchedAvailable ? searchedBooks : allBooks
 
-  console.log({ searchedBooks })
+
+  const isSearching = (searchValue: string) => {
+    setSearch(searchValue)
+  }
 
   return (
     <>
       <div>
         <CartView showCart={showCart} onShowCart={() => setShowCart(false)} />
-        <Header onShowCart={() => setShowCart(true)} />
+        <Header onShowCart={() => setShowCart(true)} isSearching={isSearching} />
         <main className='main'>
+          {!search &&
+            <>
+              <div className='featured-h6'>
+                <h6 className='h6'>Featured Books</h6>
+              </div>
+              <Carousel />
+            </>
+          }
           <div className='featured-h6'>
-            <h6 className='h6'>Featured Books</h6>
-          </div>
-          {!isSearchedAvailable && <Carousel />}
-          <div className='featured-h6'>
-            <h6 className='h6'>All Books</h6>
+            {search ?
+              <h6 className='h6'>{searchedLen} results <span>found for</span>  {`'${search}'`}</h6>
+              : <h6 className='h6'>All Books
+              </h6>
+            }
           </div>
           <section className='book-items-wrapper' >
             {books.map((book: Book, i: number) => <BookItem key={i} book={book} showCart={() => setShowCart(true)} />)}
           </section>
         </main>
-      </div>
+      </div >
     </>
   );
 }

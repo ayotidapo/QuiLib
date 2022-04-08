@@ -8,11 +8,11 @@ import './header.css'
 
 interface Props {
 	onShowCart(state: boolean): void,
-
+	isSearching(search: string): void
 }
 
 const Header: React.FC<Props> = (props) => {
-	const { onShowCart } = props
+	const { onShowCart, isSearching } = props
 	const { bookState: { addedBooks, books }, bookDispatcher } = useContext(BookContext)
 
 	const [showSearch, setShowSearch] = useState<boolean>(false)
@@ -29,7 +29,7 @@ const Header: React.FC<Props> = (props) => {
 
 	const onSearch = (search: string) => {
 		setSearch(search)
-
+		isSearching(search)
 	}
 
 	const onClearSearch = () => {

@@ -26,19 +26,19 @@
   right: 0px;
 }
 
-.flickity-prev-next-button.previous {
+.carousel-wrapper .flickity-prev-next-button.previous {
   left: 0px;
   z-index: 2;
   background: transparent;
 }
 
-.flickity-prev-next-button.next {
+.carousel-wrapper .flickity-prev-next-button.next {
   right: 0px;
   z-index: 2;
   background: transparent;
 }
 
-.flickity-prev-next-button .flickity-button-icon {
+.carousel-wrapper .flickity-prev-next-button .flickity-button-icon {
   position: absolute;
   left: 20%;
   top: 20%;
@@ -47,11 +47,11 @@
   color: #000;
 }
 
-.flickity-prev-next-button.next:hover {
+.carousel-wrapper .flickity-prev-next-button.next:hover {
   background: transparent;
 }
 
-.flickity-prev-next-button.previous:hover {
+.carousel-wrapper .flickity-prev-next-button.previous:hover {
   background: transparent;
 }
 
