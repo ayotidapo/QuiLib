@@ -17,6 +17,18 @@ const CartView: React.FC<Props> = (props) => {
   const { bookState } = useContext(BookContext)
   const addedBooks = bookState.addedBooks
 
+
+  const allsubTotal = bookState.addedBooks.map((book: Book) => Number(book.total_price))
+
+  const subTotal = allsubTotal.reduce(
+    (prev: number, curVal: number) => prev + curVal,
+    0
+  );
+
+  // console.log(bookState.addedBooks.map((book: Book) => book.total_price))
+
+  console.log(subTotal, allsubTotal)
+
   const stopProg = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation()
   }
@@ -40,7 +52,7 @@ const CartView: React.FC<Props> = (props) => {
           <div className='checkout-box'>
             <div className='d-flx-jc-sb mb-10 mt-10'>
               <span className='subt'>Subtotal</span>
-              <span className='subt-price'>$94.76</span>
+              <span className='subt-price'>{!isNaN(subTotal) && `$ ${subTotal}`}</span>
             </div>
             <Button className='cart-box-btn'>
               <span>

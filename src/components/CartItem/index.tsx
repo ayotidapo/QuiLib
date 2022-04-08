@@ -67,7 +67,7 @@ const CartItem: React.FC<Props> = ({ book }) => {
           <span>{book.number_of_purchases}</span>
           <span className='hand' onClick={() => controlQty(book.id, "-")}>-</span>
         </div>
-        <span className='price'>$ 59.98</span>
+        <span className='price'>{book.total_price && `$ ${book.total_price}`}</span>
       </div>
     </article>
   );

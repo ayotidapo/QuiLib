@@ -23,7 +23,7 @@ function App() {
 
     setSearch(searchValue)
   }
-  console.log('BGBG')
+
   return (
     <>
       <div>
