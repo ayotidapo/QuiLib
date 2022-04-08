@@ -16,13 +16,13 @@ const BookItem: React.FC<Props> = (props) => {
   const tagNames: string = tags.join(',')
 
   const isoutOfStock = book.available_copies < book.number_of_purchases
-  const { bookDispatcher, bookState } = useContext(BookContext)
+  const { bookDispatcher } = useContext(BookContext)
 
-  console.log(bookState)
+
   const addToCart = (book: Book) => {
-    console.log(book)
+
     if (isoutOfStock) return false;
-    console.log('called')
+
     showCart()
     bookDispatcher({ type: 'ADD_TO_CART', book })
   }
@@ -60,7 +60,7 @@ const BookItem: React.FC<Props> = (props) => {
           </div>
           <div className="price">
             <span>$29.99</span>
-            {!isoutOfStock ? <span className="col-gr">{book.available_copies} Copies Available</span> : <span>Out of stock</span>}
+            {!isoutOfStock ? <span className="col-gr">{book.available_copies} Copies Available</span> : <span className='col-error'>Out of stock</span>}
           </div>
           <div className={`add-2-cart hand ${isoutOfStock && 'disabled'}`} onClick={() => addToCart(book)}>
             <Icon id="cart" height={14} width={15} />

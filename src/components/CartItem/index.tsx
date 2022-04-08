@@ -7,9 +7,20 @@ interface Props {
   book: Book
 }
 
+interface Author {
+  id: number;
+  name: string;
+  history: string;
+  rating: string;
+  book: number;
+  published_at: string;
+  created_at: string;
+  updated_at: string;
+}
 
 const CartItem: React.FC<Props> = ({ book }) => {
   const { bookDispatcher } = useContext(BookContext)
+
 
   const controlQty = (bookId: number, sign: string) => {
     if (sign === '+') {
@@ -33,7 +44,7 @@ const CartItem: React.FC<Props> = ({ book }) => {
       id
     })
   }
-
+  const authors = book.authors.map((author: Author) => author.name)
 
   return (
     <article className='cart-item'>
@@ -45,7 +56,7 @@ const CartItem: React.FC<Props> = ({ book }) => {
       </div>
       <div className='cart-item-desc'>
         <h6 className='h6'>{book.title}</h6>
-        <span className='mt-5'>{book.author}</span>
+        <span className='mt-5'>{authors}</span>
         <span className='remove hand' onClick={() => onRemove(book.id)}>Remove</span>
       </div>
       <div className='controls-price'>

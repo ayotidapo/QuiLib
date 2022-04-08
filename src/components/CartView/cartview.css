@@ -41,7 +41,7 @@
 .cart-box {
   height: 60%;
   width: 100%;
-  padding: 15px 40px 40px 40px;
+  padding: 15px 35px 35px 35px;
   overflow-y: scroll;
 }
 
@@ -50,6 +50,7 @@
   color: var(--col-wt);
   height: 70px;
   display: flex;
+  padding-top: 25px;
 }
 .checkout-box .proceed {
   font-size: var(--f-18);
@@ -61,7 +62,7 @@
 .checkout-box {
   height: auto;
   padding-top: 10px;
-  padding: 25px 40px 40px 40px;
+  padding: 25px 35px 35px 35px;
 }
 .checkout-box .subt {
   font-size: var(--f-14);
@@ -86,4 +87,53 @@
 .cart-header svg {
   display: flex;
   margin: 10px;
+}
+
+@media only screen and (max-width: 425px) {
+  .tog-view-show {
+    width: 425px;
+    transition: width 0.8s;
+  }
+  .cart-wrapper {
+    width: 425px;
+    height: 100%;
+    background: #fff;
+  }
+  .cart-box {
+    padding: 15px 25px 25px 25px;
+  }
+  .cart-header {
+    padding: 0px 20px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .tog-view-show {
+    width: 375px;
+    transition: width 0.8s;
+  }
+  .cart-wrapper {
+    width: 375px;
+    height: 100%;
+    background: #fff;
+  }
+
+  .cart-box {
+    padding: 15px 20px 20px 20px;
+  }
+  .cart-header {
+    padding: 0px 20px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .tog-view-show {
+    width: 320px;
+    transition: width 0.8s;
+  }
+  .cart-wrapper {
+    width: 320px;
+    height: 100%;
+    background: #fff;
+  }
 }

@@ -16,7 +16,8 @@ const bookReducer = (state:Book, action:Action) => {
 		return {...incrQtyFun(state,action) };
 	  case 'REDUCE_QTY':
 		return {...reduceQtyFun(state,action) };
-
+	  case 'UPDATE_SEARCH':
+		return {...updateSearch(state,action) };
 	  default:
 		return state;
 	}
@@ -31,22 +32,24 @@ const bookReducer = (state:Book, action:Action) => {
     const newbook=action.book
 	const bookId=action.book.id
 	const bookids= newState.addedBooks.map((book:Book)=>book.id)
-    
+
 	if(newbook.number_of_purchases >= newbook.available_copies) {
-		console.log({dapo1:newState})
+	
 		return newState 
 	}
 	const bookIndex=newState.addedBooks.findIndex((book:Book)=> book.id === bookId )
 	if(bookids.includes(newbook.id)) {	
-		console.log(newState.addedBooks,bookIndex,newbook)
-		newState.addedBooks[bookIndex].number_of_purchases += 1
-		console.log({dapo2:newState})
+		const increment =newState.addedBooks[bookIndex].number_of_purchases + 1
+
+		newState.addedBooks[bookIndex].number_of_purchases = increment
+
 		return newState
 	}
+	console.log(newState.addedBooks[bookIndex]?.available_copies,100)
 	const avBooks=newState.addedBooks[bookIndex]?.available_copies
 	if(avBooks) newState.addedBooks[bookIndex].available_copies -= 1
 	newState.addedBooks.push(newbook)
-	console.log({dapo3:newState})
+	console.log(newState.addedBooks[bookIndex]?.available_copies,200)
     return newState
 
   }
@@ -62,25 +65,38 @@ const bookReducer = (state:Book, action:Action) => {
 
   }
 
-  const incrQtyFun=(state:Book, action:Action)=>{
+const incrQtyFun=(state:Book, action:Action)=>{
 
 	const newState={ ...state }
     const bookId=action.id
 	
 	const bookIndex=newState.addedBooks.findIndex((book:Book)=> book.id === bookId )
-	const purBooks=newState.addedBooks[bookIndex]?.number_of_purchases
-	if(purBooks) newState.addedBooks[bookIndex].number_of_purchases += 1
+	const book= {...(newState.addedBooks[bookIndex])}
+console.log({book,bookIndex})
 	
-	return newState
+	const purBooks=book?.number_of_purchases
+	let increment=0
+	// const curPur=newState.addedBooks[bookIndex]?.number_of_purchases
 
-  }
+	if(purBooks) { 
+	  increment =purBooks + 1
+	}
+	 book.number_of_purchases = increment;
+	 console.log({book})
+	 newState.addedBooks[bookIndex]=book
+	// console.log({increment})
+	//  newState.addedBooks[bookIndex].number_of_purchases++
+	//  console.log({in:newState.addedBooks[bookIndex].number_of_purchases,newState:{...newState}})
+	// console.log({a:newState.addedBooks[bookIndex].number_of_purchases})
+	 return newState
 
-  const reduceQtyFun=(state:Book, action:Action)=>{
+}
+
+const reduceQtyFun=(state:Book, action:Action)=>{
 
 	const newState={ ...state }
     const bookId=action.id
-	
-	
+		
 	const bookIndex=newState.addedBooks.findIndex((book:Book)=> book.id === bookId )
 
 	const purBooks=newState.addedBooks[bookIndex]?.number_of_purchases
@@ -90,8 +106,25 @@ const bookReducer = (state:Book, action:Action) => {
 		newState.addedBooks=newbooks
 		return newState
 	}
+	let increment=0
+	if(purBooks) { 
+	  increment =newState.addedBooks[bookIndex]?.number_of_purchases - 1
+	}
+	
+	newState.addedBooks[bookIndex].number_of_purchases = increment	
+	
+	return newState
 
-	if(purBooks) newState.addedBooks[bookIndex].number_of_purchases -= 1
+}
+
+
+  const updateSearch=(state:Book, action:Action)=>{
+
+	const newState={ ...state }
+    const searchedBooks=action.searches
+	
+	newState.searchedBooks = searchedBooks
+	
 	return newState
 
   }

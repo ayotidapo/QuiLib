@@ -36,8 +36,6 @@ const CartView: React.FC<Props> = (props) => {
           <div className='cart-box'>
             {addedBooks.map((book: Book) => <CartItem key={book.id} book={book} />)}
 
-
-
           </div>
           <div className='checkout-box'>
             <div className='d-flx-jc-sb mb-10 mt-10'>

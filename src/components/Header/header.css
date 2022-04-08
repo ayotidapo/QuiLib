@@ -77,7 +77,7 @@
 }
 
 .cart-div::after {
-  content: '3';
+  content: attr(data-cartcount);
   position: absolute;
   padding: 5px;
   display: flex;
