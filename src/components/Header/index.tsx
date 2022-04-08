@@ -43,12 +43,12 @@ const Header: React.FC<Props> = (props) => {
 		if (search) {
 			const capSearch = `${search.charAt(0).toUpperCase()}${search.slice(1)}`
 			const serchByBook = books.filter((book: Book) => book?.title?.includes(capSearch))
-			const serchByDesc = books.filter((book: Book) => book?.full_description?.includes(search))
+			// const serchByDesc = books.filter((book: Book) => book?.full_description?.includes(search))
 
 			console.log({ serchByBook, search })
 			bookDispatcher({
 				type: 'UPDATE_SEARCH',
-				searches: [...serchByDesc]
+				searches: [...serchByBook]
 			})
 			return
 		}
