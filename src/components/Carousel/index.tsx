@@ -1,13 +1,21 @@
+import { useContext } from 'react';
+import { BookContext } from 'context';
+import { Book } from 'interfaces'
 import './carousel.css'
 
 import Flickity from 'react-flickity-component'
+
+
 
 const flickityOptions = {
 	initialIndex: 3,
 	wrapAround: true
 }
 
-function Carousel() {
+const Carousel: React.FC = () => {
+
+	const { bookState: { featured } } = useContext(BookContext)
+
 	return (
 		<section className="carousel-wrapper">
 			<Flickity
@@ -18,16 +26,9 @@ function Carousel() {
 				reloadOnUpdate // default false
 				static // default false
 			>
-				<div className="gallery-cell"><img src="https://res.cloudinary.com/quidaxengineering/image/upload/v1611741483/feec/the-effective-engineer-cover_bgj7u4.jpg" alt="" /></div>
-				<div className="gallery-cell"><img src="https://res.cloudinary.com/quidaxengineering/image/upload/v1611741483/feec/the-effective-engineer-cover_bgj7u4.jpg" alt="" /></div>
-				<div className="gallery-cell"><img src="https://res.cloudinary.com/quidaxengineering/image/upload/v1611741483/feec/the-effective-engineer-cover_bgj7u4.jpg" alt="" /></div>
-				<div className="gallery-cell"><img src="https://res.cloudinary.com/quidaxengineering/image/upload/v1611741483/feec/the-effective-engineer-cover_bgj7u4.jpg" alt="" /></div>
-				<div className="gallery-cell"><img src="https://res.cloudinary.com/quidaxengineering/image/upload/v1611741483/feec/the-effective-engineer-cover_bgj7u4.jpg" alt="" /></div>
-				<div className="gallery-cell"><img src="https://res.cloudinary.com/quidaxengineering/image/upload/v1611741483/feec/the-effective-engineer-cover_bgj7u4.jpg" alt="" /></div>
-				<div className="gallery-cell"><img src="https://res.cloudinary.com/quidaxengineering/image/upload/v1611741483/feec/the-effective-engineer-cover_bgj7u4.jpg" alt="" /></div>
-				<div className="gallery-cell"><img src="https://res.cloudinary.com/quidaxengineering/image/upload/v1611741483/feec/the-effective-engineer-cover_bgj7u4.jpg" alt="" /></div>
-				<div className="gallery-cell"><img src="https://res.cloudinary.com/quidaxengineering/image/upload/v1611741483/feec/the-effective-engineer-cover_bgj7u4.jpg" alt="" /></div>
-				<div className="gallery-cell"><img src="https://res.cloudinary.com/quidaxengineering/image/upload/v1611741483/feec/the-effective-engineer-cover_bgj7u4.jpg" alt="" /></div>
+				{featured.map((book: Book) => <div className="gallery-cell"><img src={book.image_url} alt={book.title} /></div>)}
+
+
 			</Flickity>
 		</section>
 	)

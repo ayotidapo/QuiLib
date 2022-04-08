@@ -70,7 +70,9 @@ const Header: React.FC<Props> = (props) => {
 					onClick={stopProg}
 				>
 					<Icon height={15} width={16} id="back" className="i-bk" onClickFunc={() => onToggle(false)} />
-					<SearchInput value={search} onChangeInput={onSearch} clearSearch={onClearSearch} />
+					<SearchInput value={search} onChangeInput={onSearch}
+						clearSearch={onClearSearch} isSearching={isSearching}
+					/>
 				</div>
 			</div>
 			<header className='header'>
@@ -81,7 +83,9 @@ const Header: React.FC<Props> = (props) => {
 						<em > A filmsy book company</em>
 					</div>
 				</div>
-				<SearchInput value={search} onChangeInput={onSearch} clearSearch={onClearSearch} />
+				<SearchInput value={search} onChangeInput={onSearch}
+					clearSearch={onClearSearch} isSearching={isSearching}
+				/>
 				<div className='cart-div-nav'>
 					<Icon id="search" height={15} width={15} className='srh' onClickFunc={() => onToggle(true)} />
 					<Icon id="logo-wbg" height={50} width={50} className='wbg' />

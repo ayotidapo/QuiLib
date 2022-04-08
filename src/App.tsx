@@ -17,16 +17,13 @@ function App() {
 
   const { bookState: { books: allBooks, searchedBooks } } = useContext(BookContext)
   const searchedLen = searchedBooks.length
-  const isSearchedAvailable = searchedLen > 0
-
-
-  const books = isSearchedAvailable ? searchedBooks : allBooks
-
+  const books = search ? searchedBooks : allBooks
 
   const isSearching = (searchValue: string) => {
+
     setSearch(searchValue)
   }
-
+  console.log('BGBG')
   return (
     <>
       <div>

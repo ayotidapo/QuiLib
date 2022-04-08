@@ -5,7 +5,8 @@ interface Props {
 	className?: string;
 	type: InputTypes,
 	value: string,
-	onChangeInput(value: string | null): void
+	onChangeInput(value: string | null): void,
+
 }
 
 const Input: React.FC<Props> = (props) => {
