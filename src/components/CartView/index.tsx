@@ -18,7 +18,7 @@ const CartView: React.FC<Props> = (props) => {
   const addedBooks = bookState.addedBooks
 
 
-  const allsubTotal = bookState.addedBooks.map((book: Book) => Number(book.total_price))
+  const allsubTotal = bookState.addedBooks.map((book: Book) => Number(book.total_price || book.price))
 
   const subTotal = allsubTotal.reduce(
     (prev: number, curVal: number) => prev + curVal,
