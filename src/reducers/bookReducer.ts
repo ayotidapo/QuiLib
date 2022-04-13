@@ -90,7 +90,7 @@ const incrQtyFun=(state:Book, action:Action)=>{
       
 	  book.number_of_purchases = increment;
 	  book.available_copies = decr;
-	  book.total_price=(price * book.number_of_purchases)?.toFixed(2) || price
+	  book.total_price=(price * book.number_of_purchases)?.toFixed(2) 
 	  book_s.number_of_purchases = increment;
 	  book_s.available_copies = decr;
 
