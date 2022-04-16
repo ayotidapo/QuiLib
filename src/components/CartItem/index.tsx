@@ -22,9 +22,6 @@ const CartItem: React.FC<Props> = ({ book }) => {
         id: bookId
       })
     }
-    if (sign === '-' && book?.number_of_purchases <= 1) {
-      return onRemove(bookId)
-    }
 
     bookDispatcher({
       type: 'REDUCE_QTY',

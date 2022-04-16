@@ -71,7 +71,7 @@ const incrQtyFun=(state:Book, action:Action)=>{
 	const bookIndex=newState.addedBooks.findIndex((book:Book)=> book.id === bookId )
 	const booksIndex=newState.books.findIndex((book:Book)=> book.id === bookId )
 	const book = {...(newState.addedBooks[bookIndex])}
-	const book_s = {...(newState.books[bookIndex])}
+	const book_s = {...(newState.books[booksIndex])}
 
 	
 	const purBooks=book?.number_of_purchases
@@ -110,7 +110,7 @@ const reduceQtyFun=(state:Book, action:Action)=>{
 	const bookIndex=newState.addedBooks.findIndex((book:Book)=> book.id === bookId )
 	const booksIndex=newState.books.findIndex((book:Book)=> book.id === bookId )
 	const book = {...(newState.addedBooks[bookIndex])}
-	const book_s = {...(newState.books[bookIndex])}
+	const book_s = {...(newState.books[booksIndex])}
 
 
 
@@ -121,8 +121,11 @@ const reduceQtyFun=(state:Book, action:Action)=>{
 	let decr=0
 	let price=book?.price
 
-
+    
 	if(purBooks > 0) { 
+		
+		
+
 	  increment = availables  + 1
 	  decr= purBooks - 1
 
@@ -135,10 +138,16 @@ const reduceQtyFun=(state:Book, action:Action)=>{
 
 	  newState.addedBooks[bookIndex]=book
 	  newState.books[booksIndex]=book_s
+
+	  
 	}
 
-	 
-	 return newState
+	if(purBooks === 0) {
+		const action ={type:'REMOVE_BOOK',id:bookId};
+	    return removeFromCartFun(state,action)
+	}
+	
+	return newState
 
 }
 
