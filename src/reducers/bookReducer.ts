@@ -33,10 +33,6 @@ const bookReducer = (state:Book, action:Action) => {
 	const bookId=action.book.id
 	const bookids= newState.addedBooks.map((book:Book)=>book.id)
 
-	if(newbook.number_of_purchases >= newbook.available_copies) {
-	
-		return newState 
-	}
 	const bookIndex=newState.addedBooks.findIndex((book:Book)=> book.id === bookId )
 	if(bookids.includes(newbook.id)) {	
 		const increment =newState.addedBooks[bookIndex].number_of_purchases + 1
@@ -129,11 +125,11 @@ const reduceQtyFun=(state:Book, action:Action)=>{
 	  decr= purBooks - 1
 
 
-	  book.number_of_purchases = increment;
-	  book.available_copies = decr;
+	  book.number_of_purchases = decr;
+	  book.available_copies = increment;
 	  book.total_price=(price * book.number_of_purchases)?.toFixed(2) 
-	  book_s.number_of_purchases = increment;
-	  book_s.available_copies = decr;
+	  book_s.number_of_purchases = decr;
+	  book_s.available_copies = increment;
 
 	  newState.addedBooks[bookIndex]=book
 	  newState.books[booksIndex]=book_s

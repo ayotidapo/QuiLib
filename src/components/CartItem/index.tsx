@@ -13,19 +13,24 @@ const CartItem: React.FC<Props> = ({ book }) => {
   const { bookDispatcher } = useContext(BookContext)
 
 
-  const controlQty = (bookId: number, sign: string) => {
+  const controlQty = (book: Book, sign: string) => {
+
+    const bookId = book?.id
     if (sign === '+') {
-      bookDispatcher({
+      return bookDispatcher({
         type: 'INCREASE_QTY',
         id: bookId
       })
     }
-    else {
-      bookDispatcher({
-        type: 'REDUCE_QTY',
-        id: bookId
-      })
+    if (sign === '-' && book?.number_of_purchases <= 1) {
+      return onRemove(bookId)
     }
+
+    bookDispatcher({
+      type: 'REDUCE_QTY',
+      id: bookId
+    })
+
   }
 
 
@@ -54,9 +59,9 @@ const CartItem: React.FC<Props> = ({ book }) => {
       <div className='controls-price'>
         <span className='mt-5'>$ {book.price}</span>
         <div className='d-flx controls mt-10'>
-          <span className={book.available_copies === 0 ? 'disabled' : 'hand'} onClick={() => controlQty(book.id, "+")}>+</span>
+          <span className={book.available_copies === 0 ? 'disabled' : 'hand'} onClick={() => controlQty(book, "+")}>+</span>
           <span>{book.number_of_purchases}</span>
-          <span className='hand' onClick={() => controlQty(book.id, "-")}>-</span>
+          <span className='hand' onClick={() => controlQty(book, "-")}>-</span>
         </div>
         <span className='price'>{`$ ${book.total_price || book.price}`}</span>
       </div>
