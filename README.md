@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# QuidLib
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live Demo(https://profound-profiterole-2b33a4.netlify.app/).
 
 ## Available Scripts
 
