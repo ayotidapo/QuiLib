@@ -17,7 +17,7 @@ const SearchInput: React.FC<Props> = (props) => {
 		<div className='search-div'>
 			<Input placeholder='Search books, genres, authors, etc.' className='search-input' type="text" value={value} {...rest} />
 			{value ?
-				<div className='ip-ic-div times hand' onClick={() => { console.log(value); clearSearch(); isSearching("") }}>
+				<div className='ip-ic-div times hand' onClick={() => { clearSearch(); isSearching("") }}>
 					&times;
 				</div> :
 				<div className='ip-ic-div'>

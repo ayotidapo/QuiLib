@@ -81,8 +81,7 @@ const incrQtyFun=(state:Book, action:Action)=>{
 	let increment=0
 	let decr=0
 	let price=book?.price
-	console.log(price,'pppp')
-	// const curPur=newState.addedBooks[bookIndex]?.number_of_purchases
+
 
 	if(purBooks && availables > 0) { 
 	  increment = purBooks + 1
@@ -108,53 +107,40 @@ const incrQtyFun=(state:Book, action:Action)=>{
 const reduceQtyFun=(state:Book, action:Action)=>{
 	const newState={ ...state }
     const bookId=action.id
-	
+
+
 	const bookIndex=newState.addedBooks.findIndex((book:Book)=> book.id === bookId )
-	const book= {...(newState.addedBooks[bookIndex])}
+	const booksIndex=newState.books.findIndex((book:Book)=> book.id === bookId )
+	const book = {...(newState.addedBooks[bookIndex])}
+	const book_s = {...(newState.books[bookIndex])}
+
+
 
 	
 	const purBooks=book?.number_of_purchases
 	const availables=book?.available_copies
 	let increment=0
 	let decr=0
-	// const curPur=newState.addedBooks[bookIndex]?.number_of_purchases
+	let price=book?.price
 
-	if(purBooks && availables < purBooks) { 
+
+	if(purBooks > 0) { 
 	  increment = availables  + 1
 	  decr= purBooks - 1
 
-	  book.number_of_purchases = decr;
-	  book.available_copies = increment;
+
+	  book.number_of_purchases = increment;
+	  book.available_copies = decr;
+	  book.total_price=(price * book.number_of_purchases)?.toFixed(2) 
+	  book_s.number_of_purchases = increment;
+	  book_s.available_copies = decr;
+
 	  newState.addedBooks[bookIndex]=book
+	  newState.books[booksIndex]=book_s
 	}
 
 	 
-	// console.log({increment})
-	//  newState.addedBooks[bookIndex].number_of_purchases++
-	//  console.log({in:newState.addedBooks[bookIndex].number_of_purchases,newState:{...newState}})
-	// console.log({a:newState.addedBooks[bookIndex].number_of_purchases})
 	 return newState
-
-	// const newState={ ...state }
-    // const bookId=action.id
-		
-	// const bookIndex=newState.addedBooks.findIndex((book:Book)=> book.id === bookId )
-
-	// const purBooks=newState.addedBooks[bookIndex]?.number_of_purchases
-     
-	// if(purBooks === 1) {
-	// 	const newbooks=newState.addedBooks.filter((book:Book)=> book.id !== bookId )
-	// 	newState.addedBooks=newbooks
-	// 	return newState
-	// }
-	// let increment=0
-	// if(purBooks) { 
-	//   increment =newState.addedBooks[bookIndex]?.number_of_purchases - 1
-	// }
-	
-	// newState.addedBooks[bookIndex].number_of_purchases = increment	
-	
-	// return newState
 
 }
 

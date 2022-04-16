@@ -15,7 +15,7 @@ const BookItem: React.FC<Props> = (props) => {
   const tags: string[] = book?.tags.map((tag: { name: string }) => tag.name)
   const tagNames: string = tags.join(',')
 
-  const isoutOfStock = book.available_copies < book.number_of_purchases
+  const isoutOfStock = book.available_copies === 0;
   const { bookDispatcher } = useContext(BookContext)
 
 

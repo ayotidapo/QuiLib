@@ -25,9 +25,9 @@ const CartView: React.FC<Props> = (props) => {
     0
   );
 
-  // console.log(bookState.addedBooks.map((book: Book) => book.total_price))
 
-  console.log(subTotal, allsubTotal)
+
+
 
   const stopProg = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation()
