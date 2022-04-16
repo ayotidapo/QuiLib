@@ -36,8 +36,10 @@ const bookReducer = (state:Book, action:Action) => {
 	const bookIndex=newState.addedBooks.findIndex((book:Book)=> book.id === bookId )
 	if(bookids.includes(newbook.id)) {	
 		const increment =newState.addedBooks[bookIndex].number_of_purchases + 1
+		const decrement =newState.addedBooks[bookIndex].available_copies - 1
 
 		newState.addedBooks[bookIndex].number_of_purchases = increment
+		newState.addedBooks[bookIndex].available_copies = decrement
 
 		return newState
 	}
