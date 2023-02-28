@@ -77,7 +77,7 @@ const Header: React.FC<Props> = (props) => {
 				<div className='brand-div' >
 					<Icon id="logo" height={50} width={50} />
 					<div className='d-flx-col brand-txt-div'>
-						<span >Quidax Books</span>
+						<span >QuidLib</span>
 						<em > A filmsy book company</em>
 					</div>
 				</div>
